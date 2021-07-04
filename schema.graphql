@@ -1,0 +1,61 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: RootQuery
+    mutation: RootMutation
+}
+
+type AuthData {
+    token: String!
+    tokenExpiration: Int!
+    userId: ID!
+}
+
+type Booking {
+    _id: ID!
+    createdAt: String!
+    event: Event!
+    updatedAt: String!
+    user: User!
+}
+
+type Event {
+    _id: ID!
+    creator: User!
+    date: String!
+    description: String!
+    price: Float!
+    title: String!
+}
+
+type RootMutation {
+    bookEvent(eventId: ID!): Booking!
+    cancelBooking(bookingId: ID!): Event!
+    createEvent(eventInput: EventInput): Event
+    createUser(userInput: UserInput): User
+}
+
+type RootQuery {
+    bookings: [Booking!]!
+    events: [Event!]!
+    login(email: String!, password: String!): AuthData!
+}
+
+type User {
+    _id: ID!
+    createdEvents: [Event!]
+    email: String!
+    password: String
+}
+
+input EventInput {
+    date: String!
+    description: String!
+    price: Float!
+    title: String!
+}
+
+input UserInput {
+    email: String!
+    password: String!
+}
